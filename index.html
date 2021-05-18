@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greetings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Greeting</h1>
+        <div class="content">
+            <div class="form-and-greeting">
+                <form>
+                    <div class="textField">
+                        <label for="yourName">Your Name :</label> 
+                        <input type="text" name="name" id="yourName"
+                        placeholder="Please enter your name">
+                    </div>
+                    <div class="radios">
+                        <label for="sepedi">Sepedi</label>
+                        <input type="radio" name="theRadio" id="language" value="sepedi">
+                        <label for="zulu">Zulu</label>
+                        <input type="radio" name="theRadio" id="language" value="zulu">
+                        <label for="english">English</label>
+                        <input type="radio" name="theRadio" id="language" value="english">
+                    </div>
+                    <div class="theButton">
+                        <button class="submit">Greet Me</button>
+                    </div>
+                </form>
+                <div class="greet-result">
+                    <p class="greeting">Hello, <span class="greetedName">your Name</span></p>
+                </div>
+            </div>
+            <span class="line"></span>
+            <div class="counter-section">
+                <p>Greeting Counter</p>
+                <span class="count">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Kgotso Matuludi &copy; 2021</p>
+    </div>
+    <script src="./greetDom.js"></script>
+</body>
+</html>
