@@ -1,16 +1,8 @@
 function GreetFactory(){
-    var radioValue;
     var greetMessage;
     var greetLanguage;
-    var namesEntered = [];
-    var username;
-
-    function setRadioValue(radioBtn){
-        radioValue = radioBtn;
-    }
-    function getRadioValue(){
-        radioValue
-    }
+    var greetedNames = [];
+    var nameOfUser;
 
     function setLanguage(language){
         greetLanguage = language;
@@ -22,36 +14,41 @@ function GreetFactory(){
 
     function setGreetMessage(){
         if(getLanguage() === 'sepedi'){
-            greetMessage = 'Dumelang, ';
-        }
-        else if(getLanguage() === 'zulu'){
-            greetMessage = 'Sawubona, ';
-        }
-        else if(getLanguage() === 'english'){
-            greetMessage = 'Hello, ';
+            greetMessage = 'Dumela,';
+        }if(getLanguage() === 'zulu'){
+            greetMessage = 'Sawubona,';
+        }if(getLanguage() === 'english'){
+            greetMessage = 'Hello,';
         }
     }
+
     function getGreetMessage(){
         return greetMessage;
     }
 
     function setTheName(name){
-        username = name;
+        nameOfUser = name;
     }
     function getTheName(){
-        return username;
+        return nameOfUser.toLowerCase().trim();
     }
-    function setNamesGreeted(username){
-        namesEntered = username;
+    function setNamesGreeted(theNames){
+        greetedNames  = theNames;
     }
 
     function getNamesGreeted(){
-        return namesEntered;
+        return greetedNames;
     }
 
+    function checkNameExist(){
+        if (!greetedNames.includes(nameOfUser)){
+            greetedNames.push(nameOfUser);
+        }
+        return greetedNames;
+    }
+
+
     return{
-        setRadioValue,
-        getRadioValue,
         setLanguage,
         getLanguage,
         setGreetMessage,
@@ -59,6 +56,7 @@ function GreetFactory(){
         setTheName,
         getTheName,
         getNamesGreeted,
-        setNamesGreeted
+        setNamesGreeted,
+        checkNameExist,
     }
 }

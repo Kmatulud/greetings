@@ -12,7 +12,6 @@
         <h1>Greeting</h1>
         <div class="content">
             <div class="form-and-greeting">
-                <form>
                     <div class="textField">
                         <label for="yourName">Your Name :</label> 
                         <input type="text" name="name" id="yourName"
@@ -21,7 +20,7 @@
                     <div class="radios">
                         <label for="sepedi">Sepedi</label>
                         <input type="radio" name="theRadio" id="language" value="sepedi">
-                        <label for="zulu">Zulu</label>
+                        <label for="zulu">IsiZulu</label>
                         <input type="radio" name="theRadio" id="language" value="zulu">
                         <label for="english">English</label>
                         <input type="radio" name="theRadio" id="language" value="english">
@@ -29,21 +28,23 @@
                     <div class="theButton">
                         <button class="submit">Greet Me</button>
                     </div>
-                </form>
                 <div class="greet-result">
-                    <p class="greeting">Hello, <span class="greetedName">your Name</span></p>
+                    <p class="greeting">Greeting Will appear here</p>
                 </div>
             </div>
             <span class="line"></span>
             <div class="counter-section">
-                <p>Greeting Counter</p>
+                <p>Greeting Counter:
+                </p>
                 <span class="count">0</span>
+                <button type="reset" id="reset">Reset</button>
             </div>
         </div>
     </div>
     <div class="footer">
         <p>Kgotso Matuludi &copy; 2021</p>
     </div>
+    <script src="./greetingsFactory.js"></script>
     <script src="./greetDom.js"></script>
 </body>
 </html>
