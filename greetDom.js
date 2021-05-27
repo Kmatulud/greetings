@@ -7,14 +7,12 @@ var count = document.querySelector('.count');
 
 const greetFactory = GreetFactory();
 
-count.innerHTML =  localStorage.getItem("stores");
 
 function greetings(){
+
     var languages = document.querySelector('#language:checked');
 
-    var counter = parseInt(localStorage.getItem("stores")) || 0;
-    // var emptyArr = [].concat(textfield.value);
-
+    var counter = Number(localStorage.getItem("stores")) || 0;
 
     if (!languages){
         greetText.innerHTML = "Please choose a language to be greeted in!";
@@ -28,62 +26,47 @@ function greetings(){
     greetFactory.getLanguage();
     greetFactory.setTheName(textfield.value);
     greetFactory.setGreetMessage();
-    
-   
-    if (greetFactory.getTheName()  !== '' && greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
-  
-        greetText.innerHTML = greetFactory.getGreetMessage() + ' ' + greetFactory.getTheName();
-        counter += 1;
+
+ function incrementCounter(){
+        counter++;
         localStorage.setItem("stores", counter);
         counter = localStorage.getItem("stores");
         count.innerHTML =  counter;
-        greetText.style.color = 'green'
+    }
+   
+    if (greetFactory.getTheName()  !== '' && greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
+        greetText.innerHTML = greetFactory.getGreetMessage() + ' ' + greetFactory.getTheName();
+        greetText.style.color = 'green';
+        incrementCounter();
     }
     else{
         greetText.innerHTML = "Please enter a valid name!"
         setTimeout(function(){
            greetText.innerHTML = '';
         }, 8000)
-        greetText.style.color = 'orange'
+        greetText.style.color = 'orange';
     }
-    // if (localStorage.getItem("stores")){
-    //     counter =  localStorage.getItem("stores");
-    //     count.innerHTML = counter;
-    // }
 
     if (textfield.value === ''){
         greetText.innerHTML = "Please enter your name!";
         setTimeout(function(){
            greetText.innerHTML = '';
         }, 8000)
-        greetText.style.color = 'orange'
+        greetText.style.color = 'orange';
     }
-    // var items = '';
 
-    // for(var j = 0; j < emptyArr.length; j++){
+    var emptyArr = JSON.parse(localStorage.getItem('emptyArr')) || [];
+    greetFactory.setNamesGreeted(emptyArr);
+    greetFactory.getNamesGreeted();
+    console.log(greetFactory.getNamesGreeted());
+    if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(greetFactory.getTheName()) && textfield.value.match(/^[a-zA-Z]{3,15}$/ig) && document.querySelector("input[name='theRadio']:checked")){
+        greetFactory.checkNameExist();
+        localStorage.setItem('emptyArr', JSON.stringify(greetFactory.getNamesGreeted()));
+        incrementCounter();
+        count.innerHTML = JSON.parse(localStorage.getItem('stores'));
+    }
 
-    //     items += emptyArr[j];
-        
-    //     if(items === textfield.value){
-    //         count.innerHTML = localStorage.getItem("stores");
-    //     }else {
-    //         counter++;
-    //         localStorage.setItem('stores', counter);
-    //         count.innerHTML = localStorage.getItem('stores');
-    //     }
-
-    // }
-
-    // greetFactory.setNamesGreeted(greetedNamesArray);
-    // greetFactory.setTheName(textfield.value);
-    
-
-    // if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(textfield.value) && greetFactory.getTheName().match(/[a-zA-Z]/ig) && document.querySelector("input[name='theRadio']:checked")){
-    //     localStorage.setItem('greetedNamesArray', greetFactory.checkNameExist());
-    //     counter++;
-    // }
     textfield.value = '';
-
 }
 
 submitBtn.addEventListener('click', greetings);
