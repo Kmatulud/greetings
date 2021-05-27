@@ -56,14 +56,15 @@ function greetings(){
     }
 
     var emptyArr = JSON.parse(localStorage.getItem('emptyArr')) || [];
+    
     greetFactory.setNamesGreeted(emptyArr);
     greetFactory.getNamesGreeted();
-    console.log(greetFactory.getNamesGreeted());
+
     if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(greetFactory.getTheName()) && textfield.value.match(/^[a-zA-Z]{3,15}$/ig) && document.querySelector("input[name='theRadio']:checked")){
         greetFactory.checkNameExist();
         localStorage.setItem('emptyArr', JSON.stringify(greetFactory.getNamesGreeted()));
         incrementCounter();
-        count.innerHTML = JSON.parse(localStorage.getItem('stores'));
+        count.innerHTML = JSON.parse(localStorage.getItem('emptyArr')).length;
     }
 
     textfield.value = '';
