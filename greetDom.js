@@ -14,11 +14,10 @@ function greetings(){
     var counter = Number(localStorage.getItem("stores")) || 0;
 
     if (!languages){
+
         greetText.innerHTML = "Please choose a language to be greeted in!";
-        setTimeout(function(){
-           greetText.innerHTML = '';
-        },8000)
         greetText.style.color = 'orange';
+        
     }
 
     greetFactory.setLanguage(languages.value);
