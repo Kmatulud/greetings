@@ -6,75 +6,63 @@ var count = document.querySelector('.count');
 
 const greetFactory = GreetFactory();
 
+if (localStorage.getItem("emptyArr")){
+    emptyArr = JSON.parse(localStorage.getItem('emptyArr')).length;
+    count.innerHTML = emptyArr;
+}
 
-function greetings(){
+submitBtn.addEventListener('click', function(){
 
     var languages = document.querySelector('#language:checked');
 
-    var counter = Number(localStorage.getItem("stores")) || 0;
-
     if (!languages){
-
         greetText.innerHTML = "Please choose a language to be greeted in!";
         greetText.style.color = 'orange';
-        
     }
 
     greetFactory.setLanguage(languages.value);
     greetFactory.getLanguage();
-    greetFactory.setTheName(textfield.value);
+    greetFactory.setTheName(textfield.value.trim());
+
     greetFactory.setGreetMessage();
    
-    if (greetFactory.getTheName()  !== '' && greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
-        greetText.innerHTML = greetFactory.getGreetMessage() + ' ' + greetFactory.getTheName();
-        greetText.style.color = 'green';
-        setTimeout(function(){
-           greetText.innerHTML = '';
-        }, 8000)
-    }
-    else{
-        greetText.innerHTML = "Please enter a valid name!"
-        setTimeout(function(){
-           greetText.innerHTML = '';
-        }, 8000)
-        greetText.style.color = 'orange';
-    }
+    if (greetFactory.getTheName() !== "") {
+        greetText.innerHTML = greetFactory.getGreetMessage() + " " + greetFactory.getTheName();
+		greetText.style.color = "green";
+	}
 
     if (textfield.value === ''){
         greetText.innerHTML = "Please enter your name!";
-        setTimeout(function(){
-           greetText.innerHTML = '';
-        }, 8000)
-        greetText.style.color = 'orange';
+        greetText.style.color = "orange";
     }
 
     var emptyArr = JSON.parse(localStorage.getItem('emptyArr')) || [];
     
     greetFactory.setNamesGreeted(emptyArr);
     greetFactory.getNamesGreeted();
-    if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(greetFactory.getTheName()) && textfield.value.match(/^[a-zA-Z]{3,15}$/ig) && languages.checked === true){
+    
+    if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(greetFactory.getTheName()) && greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
         localStorage.setItem('emptyArr', JSON.stringify(greetFactory.checkNameExist()));
-        counter++;
-        localStorage.setItem("stores", counter);
-        counter = localStorage.getItem("stores");
-        count.innerHTML = JSON.parse(localStorage.getItem('emptyArr')).length;
+        count.innerHTML = JSON.parse(localStorage.getItem('emptyArr')).length ;
      }
-    else{
-        greetText.innerHTML = "That name has already been greeted!"
-        setTimeout(function(){
-           greetText.innerHTML = '';
-        }, 8000)
-        greetText.style.color = 'orange';
+
+    else if(!greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
+        greetText.innerHTML = "Invalid name!"
+        greetText.style.color = "orange";
     }
 
+    else{
+        greetText.innerHTML = "That name has already been greeted!";
+        greetText.style.color = "orange";
+    }
 
-    textfield.value = '';
+	textfield.value = "";
     languages.checked = false;
-}
-
-submitBtn.addEventListener('click', greetings);
+})
 
 resetBtn.addEventListener('click', function(){
     localStorage.clear();
     count.innerHTML = 0;
+    greetText.innerHTML = "Greeting will appear here";
+    greetText.style.color = "#710844";
 });

@@ -27,10 +27,10 @@ function GreetFactory(){
     }
 
     function setTheName(name){
-        nameOfUser = name;
+        nameOfUser = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
     }
     function getTheName(){
-        return nameOfUser.toLowerCase().trim();
+        return nameOfUser;
     }
     function setNamesGreeted(theNames){
         greetedNames  = theNames;
