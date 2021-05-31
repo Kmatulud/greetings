@@ -18,6 +18,10 @@ submitBtn.addEventListener('click', function(){
     if (!languages){
         greetText.innerHTML = "Please choose a language to be greeted in!";
         greetText.style.color = 'orange';
+        setTimeout(function(){
+            greetText.innerHTML = "Greeting will appear here";
+            greetText.style.color = "#710844";
+        }, 4000)
     }
 
     greetFactory.setLanguage(languages.value);
@@ -30,11 +34,6 @@ submitBtn.addEventListener('click', function(){
         greetText.innerHTML = greetFactory.getGreetMessage() + " " + greetFactory.getTheName();
 		greetText.style.color = "green";
 	}
-
-    if (textfield.value === ''){
-        greetText.innerHTML = "Please enter your name!";
-        greetText.style.color = "orange";
-    }
 
     var emptyArr = JSON.parse(localStorage.getItem('emptyArr')) || [];
     
@@ -49,11 +48,19 @@ submitBtn.addEventListener('click', function(){
     else if(!greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
         greetText.innerHTML = "Invalid name!"
         greetText.style.color = "orange";
+        setTimeout(function() {
+			greetText.innerHTML = "Greeting will appear here";
+			greetText.style.color = "#710844";
+		}, 3000);
     }
 
     else{
         greetText.innerHTML = "That name has already been greeted!";
         greetText.style.color = "orange";
+         setTimeout(function() {
+			greetText.innerHTML = "Greeting will appear here";
+			greetText.style.color = "#710844";
+		}, 4000);
     }
 
 	textfield.value = "";
