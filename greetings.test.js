@@ -5,7 +5,6 @@ describe("The Greetings Project", function(){
             greetingfactory.setTheName('kgotso');
             assert.equal('kgotso',  greetingfactory.getTheName());
         });
-
         it("should greet different user with their name", function(){
             greetingfactory.setTheName('KAMOGELO');
             assert.equal('kamogelo',  greetingfactory.getTheName());

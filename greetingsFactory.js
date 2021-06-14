@@ -25,7 +25,6 @@ function GreetFactory(){
     function getGreetMessage(){
         return greetMessage;
     }
-
     function setTheName(name){
         nameOfUser = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
     }

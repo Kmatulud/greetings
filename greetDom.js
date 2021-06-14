@@ -39,7 +39,7 @@ submitBtn.addEventListener('click', function(){
     
     greetFactory.setNamesGreeted(emptyArr);
     greetFactory.getNamesGreeted();
-    
+
     if(greetFactory.getTheName() != '' && !greetFactory.getNamesGreeted().includes(greetFactory.getTheName()) && greetFactory.getTheName().match(/^[a-zA-Z]{3,15}$/gi)){
         localStorage.setItem('emptyArr', JSON.stringify(greetFactory.checkNameExist()));
         count.innerHTML = JSON.parse(localStorage.getItem('emptyArr')).length ;
